@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHL.NET", "NHL.NET\NHL.NET.csproj", "{D544C2D8-6596-4785-AD32-19032F290262}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NHL.NET.Test", "NHL.NET.Test\NHL.NET.Test.csproj", "{B958EE0B-CFC4-4208-8869-39C8562C591C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D544C2D8-6596-4785-AD32-19032F290262}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D544C2D8-6596-4785-AD32-19032F290262}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D544C2D8-6596-4785-AD32-19032F290262}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D544C2D8-6596-4785-AD32-19032F290262}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B958EE0B-CFC4-4208-8869-39C8562C591C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B958EE0B-CFC4-4208-8869-39C8562C591C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B958EE0B-CFC4-4208-8869-39C8562C591C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B958EE0B-CFC4-4208-8869-39C8562C591C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9F4C8FE7-EC8E-41FC-B051-F273B2E02CD4}
+	EndGlobalSection
+EndGlobal

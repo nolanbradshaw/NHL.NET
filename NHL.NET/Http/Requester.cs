@@ -1,0 +1,38 @@
+﻿using Newtonsoft.Json;
+using NHL.NET.Http.Interfaces;
+using System.Net.Http;
+using System.Threading.Tasks;
+
+namespace NHL.NET.Http
+{
+    public class Requester : IRequester
+    {
+        private readonly HttpClient _client;
+
+        public Requester()
+        {
+            _client = new HttpClient();
+        }
+
+        public Requester(HttpClient client)
+        {
+            _client = client;
+        }
+
+        public async Task<T> GetRequestAsync<T>(string uri) where T : class
+        {
+            var req = new HttpRequestMessage(HttpMethod.Get, uri);
+            var response = await _client.SendAsync(req);
+
+            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+        }
+
+        public T GetRequest<T>(string uri) where T : class
+        {
+            var req = new HttpRequestMessage(HttpMethod.Get, uri);
+            var response = _client.SendAsync(req).Result;
+
+            return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+        }
+    }
+}
