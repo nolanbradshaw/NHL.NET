@@ -9,5 +9,8 @@ namespace NHL.NET.Endpoints.Team
         Task<NHLTeamList> GetAllAsync();
         Task<NHLTeam> GetByIdAsync(int teamId);
         Task<NHLTeamList> GetMultipleAsync(List<int> teamIds);
+        NHLTeamList GetAll();
+        NHLTeam GetById(int teamId);
+        NHLTeamList GetMultiple(List<int> teamIds);
     }
 }

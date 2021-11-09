@@ -39,5 +39,34 @@ namespace NHL.NET.Test
             Assert.NotNull(response);
             Assert.True(response.Teams.Count == 3);
         }
+
+        [Fact]
+        public void Test_GetAll_ReturnsAllTeams()
+        {
+            var response = _nhlClient.Team.GetAll();
+
+            Assert.NotNull(response);
+            Assert.NotNull(response.Teams);
+            Assert.True(response.Teams.Count > 31);
+        }
+
+        [Fact]
+        public void Test_GetById_ReturnsTeam()
+        {
+            var response = _nhlClient.Team.GetById(6);
+
+            Assert.NotNull(response);
+            Assert.Equal("Boston", response.LocationName);
+            Assert.Equal("Bruins", response.TeamName);
+        }
+
+        [Fact]
+        public void Test_GetMultiple_ReturnsTeamList()
+        {
+            var response = _nhlClient.Team.GetMultiple(new List<int> { 1, 2, 3 });
+
+            Assert.NotNull(response);
+            Assert.True(response.Teams.Count == 3);
+        }
     }
 }
