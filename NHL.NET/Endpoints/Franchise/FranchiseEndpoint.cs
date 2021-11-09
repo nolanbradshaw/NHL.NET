@@ -1,4 +1,5 @@
-﻿using NHL.NET.Http.Interfaces;
+﻿using NHL.NET.Constants;
+using NHL.NET.Http.Interfaces;
 using NHL.NET.Models.Franchise;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,16 +16,17 @@ namespace NHL.NET.Endpoints.Franchise
         }
 
         #region Async
+
         public async Task<NHLFranchiseList> GetAllAsync()
         {
-            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>("https://statsapi.web.nhl.com/api/v1/franchises");
+            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>(Urls.FranchiseUrl);
             return franchiseList;
         }
 
         public async Task<NHLFranchise> GetByIdAsync(int franchiseId)
         {
             // API always returns a list
-            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>($"https://statsapi.web.nhl.com/api/v1/franchises/{franchiseId}");
+            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>($"{Urls.FranchiseUrl}/{franchiseId}");
 
             if (franchiseList != null && franchiseList.Franchises?.Count == 1)
             {
@@ -37,7 +39,7 @@ namespace NHL.NET.Endpoints.Franchise
         public async Task<NHLFranchiseList> GetMultipleByIdAsync(IEnumerable<int> franchiseIds)
         {
             var queryString = $"franchiseId={string.Join(",", franchiseIds)}";
-            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>($"https://statsapi.web.nhl.com/api/v1/franchises?{queryString}");
+            var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>($"{Urls.FranchiseUrl}?{queryString}");
 
             return franchiseList;
         }
@@ -48,14 +50,14 @@ namespace NHL.NET.Endpoints.Franchise
 
         public NHLFranchiseList GetAll()
         {
-            var franchiseList = _requester.GetRequest<NHLFranchiseList>("https://statsapi.web.nhl.com/api/v1/franchises");
+            var franchiseList = _requester.GetRequest<NHLFranchiseList>(Urls.FranchiseUrl);
             return franchiseList;
         }
 
         public NHLFranchise GetById(int franchiseId)
         {
             // API always returns a list
-            var franchiseList = _requester.GetRequest<NHLFranchiseList>($"https://statsapi.web.nhl.com/api/v1/franchises/{franchiseId}");
+            var franchiseList = _requester.GetRequest<NHLFranchiseList>($"{Urls.FranchiseUrl}/{franchiseId}");
 
             if (franchiseList != null && franchiseList.Franchises?.Count == 1)
             {
@@ -68,7 +70,7 @@ namespace NHL.NET.Endpoints.Franchise
         public NHLFranchiseList GetMultipleById(IEnumerable<int> franchiseIds)
         {
             var queryString = $"franchiseId={string.Join(",", franchiseIds)}";
-            var franchiseList = _requester.GetRequest<NHLFranchiseList>($"https://statsapi.web.nhl.com/api/v1/franchises?{queryString}");
+            var franchiseList = _requester.GetRequest<NHLFranchiseList>($"{Urls.FranchiseUrl}?{queryString}");
 
             return franchiseList;
         }
