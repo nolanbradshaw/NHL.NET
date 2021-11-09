@@ -1,4 +1,4 @@
-﻿using NHL.NET.Models.Response;
+﻿using NHL.NET.Models.Franchise;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

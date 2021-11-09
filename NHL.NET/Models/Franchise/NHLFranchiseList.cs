@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace NHL.NET.Models.Response
+namespace NHL.NET.Models.Franchise
 {
     public class NHLFranchiseList
     {

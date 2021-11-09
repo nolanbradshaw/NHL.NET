@@ -1,5 +1,5 @@
 ﻿using NHL.NET.Http.Interfaces;
-using NHL.NET.Models.Response;
+using NHL.NET.Models.Franchise;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;

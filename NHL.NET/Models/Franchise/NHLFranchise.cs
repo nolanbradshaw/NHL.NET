@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace NHL.NET.Models.Response
+namespace NHL.NET.Models.Franchise
 {
     public class NHLFranchise
     {
