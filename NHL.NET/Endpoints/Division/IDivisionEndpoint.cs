@@ -11,6 +11,7 @@ namespace NHL.NET.Endpoints.Division
         Task<NHLDivision> GetByIdAsync(int divisionId);
 
         Task<NHLDivisionList> GetMultipleAsync(List<int> divisionIds);
+
         NHLDivisionList GetAll();
 
         NHLDivision GetById(int divisionId);
