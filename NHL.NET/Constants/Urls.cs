@@ -11,5 +11,7 @@ namespace NHL.NET.Constants
         public static readonly string FranchiseUrl = $"{StatsApiUrl}franchises";
 
         public static readonly string TeamUrl = $"{StatsApiUrl}teams";
+
+        public static readonly string DivisionUrl = $"{StatsApiUrl}divisions";
     }
 }
