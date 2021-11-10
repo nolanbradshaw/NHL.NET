@@ -24,7 +24,14 @@ namespace NHL.NET.Http
             var req = new HttpRequestMessage(HttpMethod.Get, uri);
             var response = await _client.SendAsync(req);
 
-            return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<T>(await response.Content.ReadAsStringAsync());
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public T GetRequest<T>(string uri) where T : class
@@ -32,7 +39,14 @@ namespace NHL.NET.Http
             var req = new HttpRequestMessage(HttpMethod.Get, uri);
             var response = _client.SendAsync(req).Result;
 
-            return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+            if (response.IsSuccessStatusCode)
+            {
+                return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }
