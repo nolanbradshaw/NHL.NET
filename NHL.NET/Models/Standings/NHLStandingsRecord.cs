@@ -1,4 +1,6 @@
-﻿using NHL.NET.Models.League;
+﻿using NHL.NET.Models.Conference;
+using NHL.NET.Models.Division;
+using NHL.NET.Models.League;
 using NHL.NET.Models.Record;
 using System.Collections.Generic;
 

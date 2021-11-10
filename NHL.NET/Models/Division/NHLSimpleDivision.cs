@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace NHL.NET.Models.League
+namespace NHL.NET.Models.Division
 {
     public class NHLSimpleDivision
     {

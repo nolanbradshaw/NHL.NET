@@ -1,4 +1,6 @@
-﻿using NHL.NET.Models.Franchise;
+﻿using NHL.NET.Models.Conference;
+using NHL.NET.Models.Division;
+using NHL.NET.Models.Franchise;
 using NHL.NET.Models.League;
 
 namespace NHL.NET.Models.Team
