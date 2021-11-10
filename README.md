@@ -3,6 +3,18 @@
 
 # Usage
 
+**It is highly recommended you don't manually create an instance of NHLClient for every request.**
+
+Using dependency injection
+```CSharp
+services.AddSingleton<INHLClient, NHLClient>();
+```
+
+Instantiate manually
+```CSharp
+var nhlClient = new NHLClient();
+```
+
 # Docs
 - [Divisions](#divisions)
 - [Conferences](#conferences)
