@@ -9,9 +9,9 @@ namespace NHL.NET
 {
     public class NHLClient
     {
-        public ITeamEndpoint Team { get; }
-        public IFranchiseEndpoint Franchise { get; }
-        public IDivisionEndpoint Division { get; }
+        public ITeamEndpoint Teams { get; }
+        public IFranchiseEndpoint Franchises { get; }
+        public IDivisionEndpoint Divisions { get; }
         public IStandingsEndpoints Standings { get; set; }
         public IConferenceEndpoints Conferences { get; set; }
 
@@ -19,9 +19,9 @@ namespace NHL.NET
         {
             var requester = new Requester();
 
-            Franchise = new FranchiseEndpoint(requester);
-            Team = new TeamEndpoint(requester);
-            Division = new DivisionEndpoint(requester);
+            Franchises = new FranchiseEndpoint(requester);
+            Teams = new TeamEndpoint(requester);
+            Divisions = new DivisionEndpoint(requester);
             Standings = new StandingsEndpoints(requester);
             Conferences = new ConferenceEndpoints(requester);
         }
