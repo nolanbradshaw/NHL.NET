@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using NHL.NET.Models.League;
+using NHL.NET.Models.Conference;
 
 namespace NHL.NET.Models.Division
 {

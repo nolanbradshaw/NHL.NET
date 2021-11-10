@@ -1,4 +1,5 @@
-﻿using NHL.NET.Endpoints.Division;
+﻿using NHL.NET.Endpoints.Conference;
+using NHL.NET.Endpoints.Division;
 using NHL.NET.Endpoints.Franchise;
 using NHL.NET.Endpoints.Standings;
 using NHL.NET.Endpoints.Team;
@@ -12,6 +13,7 @@ namespace NHL.NET
         public IFranchiseEndpoint Franchise { get; }
         public IDivisionEndpoint Division { get; }
         public IStandingsEndpoints Standings { get; set; }
+        public IConferenceEndpoints Conferences { get; set; }
 
         public NHLClient()
         {
@@ -21,6 +23,7 @@ namespace NHL.NET
             Team = new TeamEndpoint(requester);
             Division = new DivisionEndpoint(requester);
             Standings = new StandingsEndpoints(requester);
+            Conferences = new ConferenceEndpoints(requester);
         }
     }
 }
