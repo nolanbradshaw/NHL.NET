@@ -11,7 +11,7 @@ namespace NHL.NET.Test
         [Fact]
         public async Task Test_GetAllAsync_ReturnsAllFranchises()
         {
-            var response = await _nhlClient.Franchise.GetAllAsync();
+            var response = await _nhlClient.Franchises.GetAllAsync();
 
             Assert.NotNull(response);
             Assert.NotNull(response.Franchises);
@@ -21,7 +21,7 @@ namespace NHL.NET.Test
         [Fact]
         public void Test_GetAll_ReturnsAllFranchises()
         {
-            var response = _nhlClient.Franchise.GetAll();
+            var response = _nhlClient.Franchises.GetAll();
 
             Assert.NotNull(response);
             Assert.NotNull(response.Franchises);
@@ -31,7 +31,7 @@ namespace NHL.NET.Test
         [Fact]
         public async Task Test_GetByIdAsync_ReturnsFranchise()
         {
-            var response = await _nhlClient.Franchise.GetByIdAsync(5);
+            var response = await _nhlClient.Franchises.GetByIdAsync(5);
 
             Assert.NotNull(response);
             Assert.Equal("Maple Leafs", response.TeamName);
@@ -41,7 +41,7 @@ namespace NHL.NET.Test
         [Fact]
         public void Test_GetById_ReturnsFranchise()
         {
-            var response = _nhlClient.Franchise.GetById(5);
+            var response = _nhlClient.Franchises.GetById(5);
 
             Assert.NotNull(response);
             Assert.Equal("Maple Leafs", response.TeamName);
@@ -51,7 +51,7 @@ namespace NHL.NET.Test
         [Fact]
         public async Task Test_GetMultipleAsync_ReturnsFranchises()
         {
-            var response = await _nhlClient.Franchise.GetMultipleByIdAsync(new List<int> { 1, 2, 3 });
+            var response = await _nhlClient.Franchises.GetMultipleByIdAsync(new List<int> { 1, 2, 3 });
 
             Assert.NotNull(response);
             Assert.NotNull(response.Franchises);
@@ -61,7 +61,7 @@ namespace NHL.NET.Test
         [Fact]
         public void Test_GetMultiple_ReturnsFranchises()
         {
-            var response = _nhlClient.Franchise.GetMultipleById(new List<int> { 1, 2, 3 });
+            var response = _nhlClient.Franchises.GetMultipleById(new List<int> { 1, 2, 3 });
 
             Assert.NotNull(response);
             Assert.NotNull(response.Franchises);
