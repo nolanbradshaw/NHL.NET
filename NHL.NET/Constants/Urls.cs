@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace NHL.NET.Constants
+﻿namespace NHL.NET.Constants
 {
     public static class Urls
     {
@@ -13,5 +9,7 @@ namespace NHL.NET.Constants
         public static readonly string TeamUrl = $"{StatsApiUrl}teams";
 
         public static readonly string DivisionUrl = $"{StatsApiUrl}divisions";
+
+        public static readonly string StandingsUrl = $"{StatsApiUrl}standings";
     }
 }
