@@ -1,5 +1,7 @@
-﻿using NHL.NET.Constants;
+﻿using Newtonsoft.Json.Linq;
+using NHL.NET.Constants;
 using NHL.NET.Http.Interfaces;
+using NHL.NET.Json;
 using NHL.NET.Models.Team;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -41,6 +43,20 @@ namespace NHL.NET.Endpoints.Team
             return teamList;
         }
 
+        public async Task<NHLTeamStats> GetTeamStatsAsync(int teamId)
+        {
+            var jsonString = await _requester.GetRequestAsync($"{Urls.TeamUrl}/{teamId}/stats");
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return null;
+            }
+
+            // The API response contains 2 different objects in a single array.
+            // This makes parsing more complicated than simply using JsonConvert.
+            var parsed = JObject.Parse(jsonString);
+            return parsed.ParseTeamStats();
+        }
+
         #endregion
 
         #region Sync
@@ -68,6 +84,20 @@ namespace NHL.NET.Endpoints.Team
             var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}?{queryString}");
 
             return teamList;
+        }
+
+        public NHLTeamStats GetTeamStats(int teamId)
+        {
+            var jsonString = _requester.GetRequest($"{Urls.TeamUrl}/{teamId}/stats");
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return null;
+            }
+
+            // The API response contains 2 different objects in a single array.
+            // This makes parsing more complicated than simply using JsonConvert.
+            var parsed = JObject.Parse(jsonString);
+            return parsed.ParseTeamStats();
         }
 
         #endregion
