@@ -31,7 +31,7 @@ namespace NHL.NET.Test
         [Fact]
         public async Task Test_GetTeamStatsAsync_ReturnsTeamStats()
         {
-            var response = await _nhlClient.Teams.GetTeamStatsAsync(5);
+            var response = await _nhlClient.Teams.GetStatsAsync(5);
 
             Assert.NotNull(response);
         }
@@ -40,8 +40,8 @@ namespace NHL.NET.Test
         public async Task Test_GetTeamStatsAsync_SpecificSeason_ReturnsTeamStats()
         {
             // Compare 2 different seasons to verify different stats were returned.
-            var firstSeason = await _nhlClient.Teams.GetTeamStatsAsync(5, "20102011");
-            var secondSeason = await _nhlClient.Teams.GetTeamStatsAsync(5, "20092010");
+            var firstSeason = await _nhlClient.Teams.GetStatsAsync(5, "20102011");
+            var secondSeason = await _nhlClient.Teams.GetStatsAsync(5, "20092010");
 
             Assert.NotNull(firstSeason);
             Assert.NotNull(secondSeason);
@@ -53,7 +53,7 @@ namespace NHL.NET.Test
         [Fact]
         public async Task Test_GetTeamStatsAsync_EmptySeason_ReturnsTeamStats()
         {
-            var response = await _nhlClient.Teams.GetTeamStatsAsync(5, "");
+            var response = await _nhlClient.Teams.GetStatsAsync(5, "");
 
             Assert.NotNull(response);
         }
@@ -99,7 +99,7 @@ namespace NHL.NET.Test
         [Fact]
         public void Test_GetTeamStats_ReturnsTeamStats()
         {
-            var response = _nhlClient.Teams.GetTeamStats(5);
+            var response = _nhlClient.Teams.GetStats(5);
 
             Assert.NotNull(response);
         }
@@ -108,8 +108,8 @@ namespace NHL.NET.Test
         public void Test_GetTeamStats_SpecificSeason_ReturnsTeamStats()
         {
             // Compare 2 different seasons to verify different stats were returned.
-            var firstSeason = _nhlClient.Teams.GetTeamStats(5, "20102011");
-            var secondSeason = _nhlClient.Teams.GetTeamStats(5, "20092010");
+            var firstSeason = _nhlClient.Teams.GetStats(5, "20102011");
+            var secondSeason = _nhlClient.Teams.GetStats(5, "20092010");
 
             Assert.NotNull(firstSeason);
             Assert.NotNull(secondSeason);
@@ -121,7 +121,7 @@ namespace NHL.NET.Test
         [Fact]
         public void Test_GetTeamStats_EmptySeason_ReturnsTeamStats()
         {
-            var response = _nhlClient.Teams.GetTeamStats(5, "");
+            var response = _nhlClient.Teams.GetStats(5, "");
 
             Assert.NotNull(response);
         }
