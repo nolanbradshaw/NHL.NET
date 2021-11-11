@@ -29,6 +29,36 @@ namespace NHL.NET.Test
         }
 
         [Fact]
+        public async Task Test_GetTeamStatsAsync_ReturnsTeamStats()
+        {
+            var response = await _nhlClient.Teams.GetTeamStatsAsync(5);
+
+            Assert.NotNull(response);
+        }
+
+        [Fact]
+        public async Task Test_GetTeamStatsAsync_SpecificSeason_ReturnsTeamStats()
+        {
+            // Compare 2 different seasons to verify different stats were returned.
+            var firstSeason = await _nhlClient.Teams.GetTeamStatsAsync(5, "20102011");
+            var secondSeason = await _nhlClient.Teams.GetTeamStatsAsync(5, "20092010");
+
+            Assert.NotNull(firstSeason);
+            Assert.NotNull(secondSeason);
+
+            Assert.NotEqual(firstSeason.Wins, secondSeason.Wins);
+            Assert.NotEqual(firstSeason.GoalsPerGame, secondSeason.GoalsPerGame);
+        }
+
+        [Fact]
+        public async Task Test_GetTeamStatsAsync_EmptySeason_ReturnsTeamStats()
+        {
+            var response = await _nhlClient.Teams.GetTeamStatsAsync(5, "");
+
+            Assert.NotNull(response);
+        }
+
+        [Fact]
         public async Task Test_GetMultipleAsync_ReturnsTeamList()
         {
             var response = await _nhlClient.Teams.GetMultipleAsync(new List<int> { 1, 2, 3 });
@@ -64,6 +94,36 @@ namespace NHL.NET.Test
 
             Assert.NotNull(response);
             Assert.True(response.Teams.Count == 3);
+        }
+
+        [Fact]
+        public void Test_GetTeamStats_ReturnsTeamStats()
+        {
+            var response = _nhlClient.Teams.GetTeamStats(5);
+
+            Assert.NotNull(response);
+        }
+
+        [Fact]
+        public void Test_GetTeamStats_SpecificSeason_ReturnsTeamStats()
+        {
+            // Compare 2 different seasons to verify different stats were returned.
+            var firstSeason = _nhlClient.Teams.GetTeamStats(5, "20102011");
+            var secondSeason = _nhlClient.Teams.GetTeamStats(5, "20092010");
+
+            Assert.NotNull(firstSeason);
+            Assert.NotNull(secondSeason);
+
+            Assert.NotEqual(firstSeason.Wins, secondSeason.Wins);
+            Assert.NotEqual(firstSeason.GoalsPerGame, secondSeason.GoalsPerGame);
+        }
+
+        [Fact]
+        public void Test_GetTeamStats_EmptySeason_ReturnsTeamStats()
+        {
+            var response = _nhlClient.Teams.GetTeamStats(5, "");
+
+            Assert.NotNull(response);
         }
     }
 }

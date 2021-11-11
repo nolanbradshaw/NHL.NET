@@ -34,6 +34,21 @@ namespace NHL.NET.Http
             }
         }
 
+        public async Task<string> GetRequestAsync(string uri)
+        {
+            var req = new HttpRequestMessage(HttpMethod.Get, uri);
+            var response = await _client.SendAsync(req);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await response.Content.ReadAsStringAsync();
+            }
+            else
+            {
+                return null;
+            }
+        }
+
         public T GetRequest<T>(string uri) where T : class
         {
             var req = new HttpRequestMessage(HttpMethod.Get, uri);
@@ -42,6 +57,21 @@ namespace NHL.NET.Http
             if (response.IsSuccessStatusCode)
             {
                 return JsonConvert.DeserializeObject<T>(response.Content.ReadAsStringAsync().Result);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public string GetRequest(string uri)
+        {
+            var req = new HttpRequestMessage(HttpMethod.Get, uri);
+            var response = _client.SendAsync(req).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                return response.Content.ReadAsStringAsync().Result;
             }
             else
             {
