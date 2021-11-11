@@ -43,7 +43,7 @@ namespace NHL.NET.Endpoints.Team
             return teamList;
         }
 
-        public async Task<NHLTeamStats> GetTeamStatsAsync(int teamId, string season = "")
+        public async Task<NHLTeamStats> GetStatsAsync(int teamId, string season = "")
         {
             var queryString = "";
             if (!string.IsNullOrEmpty(season))
@@ -93,7 +93,7 @@ namespace NHL.NET.Endpoints.Team
             return teamList;
         }
 
-        public NHLTeamStats GetTeamStats(int teamId, string season = "")
+        public NHLTeamStats GetStats(int teamId, string season = "")
         {
             var queryString = "";
             if (!string.IsNullOrEmpty(season))
