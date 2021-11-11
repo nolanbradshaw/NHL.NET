@@ -6,7 +6,7 @@ namespace NHL.NET.Test
 {
     public class DivisionTests
     {
-        private readonly NHLClient _nhlClient = new();
+        private readonly NHLClient _nhlClient = new NHLClient();
 
         [Fact]
         public async Task Test_GetAllAsync_ReturnsAllDivisions()

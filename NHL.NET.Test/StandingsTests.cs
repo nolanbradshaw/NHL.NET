@@ -11,7 +11,7 @@ namespace NHL.NET.Test
     public class StandingsTests
     {
         private const string Season = "20132014";
-        private readonly NHLClient _nhlClient = new();
+        private readonly NHLClient _nhlClient = new NHLClient();
 
         [Fact]
         public async Task Test_GetCurrentAsync_ByRegularSeason_ReturnsRegularSeasonStandings()
