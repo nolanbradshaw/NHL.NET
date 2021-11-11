@@ -51,6 +51,14 @@ namespace NHL.NET.Test
         }
 
         [Fact]
+        public async Task Test_GetTeamStatsAsync_EmptySeason_ReturnsTeamStats()
+        {
+            var response = await _nhlClient.Teams.GetTeamStatsAsync(5, "");
+
+            Assert.NotNull(response);
+        }
+
+        [Fact]
         public async Task Test_GetMultipleAsync_ReturnsTeamList()
         {
             var response = await _nhlClient.Teams.GetMultipleAsync(new List<int> { 1, 2, 3 });
@@ -108,6 +116,14 @@ namespace NHL.NET.Test
 
             Assert.NotEqual(firstSeason.Wins, secondSeason.Wins);
             Assert.NotEqual(firstSeason.GoalsPerGame, secondSeason.GoalsPerGame);
+        }
+
+        [Fact]
+        public void Test_GetTeamStats_EmptySeason_ReturnsTeamStats()
+        {
+            var response = _nhlClient.Teams.GetTeamStats(5, "");
+
+            Assert.NotNull(response);
         }
     }
 }
