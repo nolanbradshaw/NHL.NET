@@ -43,9 +43,16 @@ namespace NHL.NET.Endpoints.Team
             return teamList;
         }
 
-        public async Task<NHLTeamStats> GetTeamStatsAsync(int teamId)
+        public async Task<NHLTeamStats> GetTeamStatsAsync(int teamId, string season = "")
         {
-            var jsonString = await _requester.GetRequestAsync($"{Urls.TeamUrl}/{teamId}/stats");
+            var queryString = "";
+            if (!string.IsNullOrEmpty(season))
+            {
+                // Only add query string if a season was given.
+                queryString = $"?season={season}";
+            }
+
+            var jsonString = await _requester.GetRequestAsync($"{Urls.TeamUrl}/{teamId}/stats{queryString}");
             if (string.IsNullOrEmpty(jsonString))
             {
                 return null;
@@ -86,9 +93,16 @@ namespace NHL.NET.Endpoints.Team
             return teamList;
         }
 
-        public NHLTeamStats GetTeamStats(int teamId)
+        public NHLTeamStats GetTeamStats(int teamId, string season = "")
         {
-            var jsonString = _requester.GetRequest($"{Urls.TeamUrl}/{teamId}/stats");
+            var queryString = "";
+            if (!string.IsNullOrEmpty(season))
+            {
+                // Only add query string if a season was given.
+                queryString = $"?season={season}";
+            }
+
+            var jsonString = _requester.GetRequest($"{Urls.TeamUrl}/{teamId}/stats{queryString}");
             if (string.IsNullOrEmpty(jsonString))
             {
                 return null;
