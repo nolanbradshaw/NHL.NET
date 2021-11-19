@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Franchise
 {
-    public class FranchiseEndpoint : IFranchiseEndpoint
+    public class FranchiseEndpoints : IFranchiseEndpoints
     {
         private readonly IRequester _requester;
-        public FranchiseEndpoint(IRequester requester)
+        public FranchiseEndpoints(IRequester requester)
         {
             _requester = requester;
         }

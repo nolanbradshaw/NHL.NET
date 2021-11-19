@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Division
 {
-    public interface IDivisionEndpoint
+    public interface IDivisionEndpoints
     {
         Task<NHLDivisionList> GetAllAsync();
 

@@ -13,5 +13,7 @@
         public static readonly string StandingsUrl = $"{StatsApiUrl}standings";
 
         public static readonly string ConferenceUrl = $"{StatsApiUrl}conferences";
+
+        public static readonly string PlayerUrl = $"{StatsApiUrl}people";
     }
 }

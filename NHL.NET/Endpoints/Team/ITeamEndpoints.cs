@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Team
 {
-    public interface ITeamEndpoint
+    public interface ITeamEndpoints
     {
         Task<NHLTeamStats> GetStatsAsync(int teamId, string season = "");
         Task<NHLTeamList> GetAllAsync();

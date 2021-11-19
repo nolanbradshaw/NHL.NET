@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Division
 {
-    public class DivisionEndpoint: IDivisionEndpoint 
+    public class DivisionEndpoints: IDivisionEndpoints 
     {
         private readonly IRequester _requester;
-        public DivisionEndpoint(IRequester requester)
+        public DivisionEndpoints(IRequester requester)
         {
             _requester = requester;
         }

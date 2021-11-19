@@ -8,9 +8,9 @@ namespace NHL.NET
 {
     public interface INHLClient
     {
-        ITeamEndpoint Teams { get; }
-        IFranchiseEndpoint Franchises { get; }
-        IDivisionEndpoint Divisions { get; }
+        ITeamEndpoints Teams { get; }
+        IFranchiseEndpoints Franchises { get; }
+        IDivisionEndpoints Divisions { get; }
         IStandingsEndpoints Standings { get; set; }
         IConferenceEndpoints Conferences { get; set; }
     }
