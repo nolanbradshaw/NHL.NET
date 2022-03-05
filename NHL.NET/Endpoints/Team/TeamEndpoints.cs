@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Team
 {
-    public class TeamEndpoint : ITeamEndpoint
+    public class TeamEndpoints : ITeamEndpoints
     {
         private readonly IRequester _requester;
-        public TeamEndpoint(IRequester requester)
+        public TeamEndpoints(IRequester requester)
         {
             _requester = requester;
         }

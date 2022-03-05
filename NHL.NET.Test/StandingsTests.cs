@@ -1,8 +1,5 @@
 ﻿using NHL.NET.Constants;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -91,7 +88,7 @@ namespace NHL.NET.Test
             Assert.True(response.Records.Count == 4);
             Assert.True(response.Records.All(x => x.StandingsType == StandingsTypes.RegularSeason));
         }
-    
+
         [Fact]
         public void Test_GetCurrent_ByDivision_ReturnsDivisionStandings()
         {
@@ -102,7 +99,7 @@ namespace NHL.NET.Test
             Assert.True(response.Records.Count == 4);
             Assert.True(response.Records.All(x => x.StandingsType == StandingsTypes.ByDivision));
         }
-   
+
         [Fact]
         public void Test_GetCurrent_ByConference_ReturnsConferenceStandings()
         {
@@ -113,7 +110,7 @@ namespace NHL.NET.Test
             Assert.True(response.Records.Count == 2);
             Assert.True(response.Records.All(x => x.StandingsType == StandingsTypes.ByConference));
         }
-    
+
         [Fact]
         public void Test_GetBySeason_ReturnsRegularSeasonStandings()
         {
@@ -141,7 +138,7 @@ namespace NHL.NET.Test
 
             Assert.Null(response);
         }
-    
+
         [Fact]
         public void Test_GetBySeason_InvalidSeason_ReturnsEmptyRecords()
         {

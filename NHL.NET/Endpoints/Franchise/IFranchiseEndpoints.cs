@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Franchise
 {
-    public interface IFranchiseEndpoint
+    public interface IFranchiseEndpoints
     {
         Task<NHLFranchiseList> GetAllAsync();
         Task<NHLFranchise> GetByIdAsync(int franchiseId);
