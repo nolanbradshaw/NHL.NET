@@ -14,9 +14,9 @@ namespace NHL.NET
         public ITeamEndpoints Teams { get; }
         public IFranchiseEndpoints Franchises { get; }
         public IDivisionEndpoints Divisions { get; }
-        public IStandingsEndpoints Standings { get; set; }
-        public IConferenceEndpoints Conferences { get; set; }
-        public IPlayerEndpoints Players { get; set; }
+        public IStandingsEndpoints Standings { get; }
+        public IConferenceEndpoints Conferences { get; }
+        public IPlayerEndpoints Players { get; }
 
         public NHLClient()
         {
