@@ -12,11 +12,6 @@ Using dependency injection
 services.AddSingleton<INHLClient, NHLClient>();
 ```
 
-Instantiate manually
-```CSharp
-var nhlClient = new NHLClient();
-```
-
 # Docs
 - [Teams](#teams)
 - [Divisions](#divisions)
