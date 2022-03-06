@@ -26,13 +26,13 @@ namespace NHL.NET.Test
             Assert.NotNull(response);
             Assert.Equal("Boston", response.LocationName);
             Assert.Equal("Bruins", response.TeamName);
+            Assert.NotNull(response.Roster);
         }
 
         [Fact]
         public async Task Test_GetTeamStatsAsync_ReturnsTeamStats()
         {
             var response = await _nhlClient.Teams.GetStatsAsync(5);
-
             Assert.NotNull(response);
         }
 
@@ -65,6 +65,8 @@ namespace NHL.NET.Test
 
             Assert.NotNull(response);
             Assert.True(response.Teams.Count == 3);
+            // Verifying roster is returned
+            Assert.NotNull(response.Teams[0].Roster);
         }
 
         [Fact]
@@ -85,6 +87,7 @@ namespace NHL.NET.Test
             Assert.NotNull(response);
             Assert.Equal("Boston", response.LocationName);
             Assert.Equal("Bruins", response.TeamName);
+            Assert.NotNull(response.Roster);
         }
 
         [Fact]
@@ -94,6 +97,7 @@ namespace NHL.NET.Test
 
             Assert.NotNull(response);
             Assert.True(response.Teams.Count == 3);
+            Assert.NotNull(response.Teams[0].Roster);
         }
 
         [Fact]
