@@ -20,13 +20,13 @@ namespace NHL.NET.Endpoints.Team
 
         public async Task<NHLTeamList> GetAllAsync()
         {
-            var teamList = await _requester.GetRequestAsync<NHLTeamList>(Urls.TeamUrl);
+            var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}?expand=team.roster");
             return teamList;
         }
 
         public async Task<NHLTeam> GetByIdAsync(int teamId)
         {
-            var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}/{teamId}");
+            var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}/{teamId}?expand=team.roster");
             if (teamList != null && teamList.Teams?.Count == 1)
             {
                 return teamList.Teams[0];
@@ -38,7 +38,7 @@ namespace NHL.NET.Endpoints.Team
         public async Task<NHLTeamList> GetMultipleAsync(List<int> teamIds)
         {
             var queryString = $"teamId={string.Join(",", teamIds)}";
-            var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}?{queryString}");
+            var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}?{queryString}&expand=team.roster");
 
             return teamList;
         }
@@ -76,7 +76,7 @@ namespace NHL.NET.Endpoints.Team
 
         public NHLTeam GetById(int teamId)
         {
-            var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}/{teamId}");
+            var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}/{teamId}?expand=team.roster");
             if (teamList != null && teamList.Teams?.Count == 1)
             {
                 return teamList.Teams[0];
@@ -88,7 +88,7 @@ namespace NHL.NET.Endpoints.Team
         public NHLTeamList GetMultiple(List<int> teamIds)
         {
             var queryString = $"teamId={string.Join(",", teamIds)}";
-            var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}?{queryString}");
+            var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}?{queryString}&expand=team.roster");
 
             return teamList;
         }

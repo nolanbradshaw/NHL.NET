@@ -21,6 +21,8 @@ namespace NHL.NET.Models.Team
 
         public NHLSimpleDivision Division { get; set; }
 
+        public NHLTeamRoster Roster { get; set; }
+
         public string Abbreviation { get; set; }
 
         public string TeamName { get; set; }
