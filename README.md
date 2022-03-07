@@ -16,6 +16,7 @@ services.AddSingleton<INHLClient, NHLClient>();
 - [Teams](#teams)
 - [Divisions](#divisions)
 - [Conferences](#conferences)
+- [Players](#players)
 
 ## Teams
 
@@ -115,4 +116,32 @@ Gets a specific conference by id.
 ```CSharp
 NHLConference conference = await nhlClient.Conferences.GetByIdAsync(1);
 NHLConference conference = nhlClient.Conferences.GetById(1);
+```
+
+## Players
+
+**GetByIdAsync / GetById**
+
+Get a specific player by id.
+
+```CSharp
+// Fetches information about Jeff Carter.
+// Async
+NHLPlayer player = await nhlClient.Players.GetByIdAsync(8470604);
+// Sync
+NHLPlayer player = await nhlClient.Players.GetById(8470604);
+```
+
+**GetStatsBySeasonAsync / GetStatsBySeason**
+
+Get a players stats by season.
+
+```CSharp
+// Fetches a players regular season stats for the 2016-2017 season.
+NHLPlayerStatsList playerStats = await nhlClient.Players.GetStatsBySeasonAsync(8470604, "20162017");
+NHLPlayerStatsList playerStats = nhlClient.Players.GetStatsBySeason(8470604, "20162017");
+
+// Fetches a players playoff stats for a season.
+NHLPlayerStatsList playerStats = await nhlClient.Players.GetStatsBySeasonAsync(8470604, "20162017", StatsTypes.SingleSeasonPlayoffs);
+NHLPlayerStatsList playerStats = nhlClient.Players.GetStatsBySeason(8470604, "20162017", StatsTypes.SingleSeasonPlayoffs);
 ```
