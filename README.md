@@ -1,7 +1,7 @@
 [![Code Analysis](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/codeql-analysis.yml)
 [![Build and Test](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/dotnet.yml)
 # NHL.NET
-### A .NET Standard 2.0 API wrapper for the undocumented NHL API
+### C# API wrapper for the undocumented NHL API
 
 # Usage
 
