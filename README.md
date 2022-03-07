@@ -2,7 +2,7 @@
 [![Build and Test](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/dotnet.yml/badge.svg?branch=main)](https://github.com/nolanbradshaw/NHL.NET/actions/workflows/dotnet.yml)
 # NHL.NET
 ### C# API wrapper for the undocumented NHL API
-
+This project would not be possible without the documentation provided from [dword4 nhlapi](https://gitlab.com/dword4/nhlapi/-/tree/master)
 # Usage
 
 **It is highly recommended you don't manually create an instance of NHLClient for every request.**
