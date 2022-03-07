@@ -1,7 +1,6 @@
-﻿using System;
+﻿using NHL.NET.Exceptions;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -29,6 +28,13 @@ namespace NHL.NET.Test
         }
 
         [Fact]
+        public async Task Test_GetByIdAsync_NoConferenceFound_ThrowsNHLClientRequestException()
+        {
+            var exception = await Assert.ThrowsAsync<NHLClientRequestException>(async () => await _nhlClient.Conferences.GetByIdAsync(395581));
+            Assert.Equal((int)HttpStatusCode.NotFound, exception.StatusCode);
+        }
+
+        [Fact]
         public async Task Test_GetMultipleAsync_ReturnsConferences()
         {
             var response = await _nhlClient.Conferences.GetMultipleAsync(new List<int> { 1, 2 });
@@ -52,6 +58,13 @@ namespace NHL.NET.Test
             var response = _nhlClient.Conferences.GetById(1);
 
             Assert.NotNull(response);
+        }
+
+        [Fact]
+        public void Test_GetById_NoConferenceFound_ThrowsNHLClientRequestException()
+        {
+            var exception = Assert.Throws<NHLClientRequestException>(() => _nhlClient.Conferences.GetById(395581));
+            Assert.Equal((int)HttpStatusCode.NotFound, exception.StatusCode);
         }
 
         [Fact]

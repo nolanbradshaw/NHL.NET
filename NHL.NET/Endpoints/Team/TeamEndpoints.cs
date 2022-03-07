@@ -1,9 +1,11 @@
 ﻿using Newtonsoft.Json.Linq;
 using NHL.NET.Constants;
+using NHL.NET.Exceptions;
 using NHL.NET.Http.Interfaces;
 using NHL.NET.Json;
 using NHL.NET.Models.Team;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Team
@@ -27,12 +29,12 @@ namespace NHL.NET.Endpoints.Team
         public async Task<NHLTeam> GetByIdAsync(int teamId)
         {
             var teamList = await _requester.GetRequestAsync<NHLTeamList>($"{Urls.TeamUrl}/{teamId}?expand=team.roster");
-            if (teamList != null && teamList.Teams?.Count == 1)
+            if (teamList != null && teamList.Teams?.Count > 0)
             {
-                return teamList.Teams[0];
+                return teamList.Teams.First();
             }
 
-            return null;
+            throw new NHLClientException($"No team with id {teamId} could be found");
         }
 
         public async Task<NHLTeamList> GetMultipleAsync(List<int> teamIds)
@@ -77,12 +79,12 @@ namespace NHL.NET.Endpoints.Team
         public NHLTeam GetById(int teamId)
         {
             var teamList = _requester.GetRequest<NHLTeamList>($"{Urls.TeamUrl}/{teamId}?expand=team.roster");
-            if (teamList != null && teamList.Teams?.Count == 1)
+            if (teamList != null && teamList.Teams?.Count > 0)
             {
-                return teamList.Teams[0];
+                return teamList.Teams.First();
             }
 
-            return null;
+            throw new NHLClientException($"No team with id {teamId} could be found");
         }
 
         public NHLTeamList GetMultiple(List<int> teamIds)
