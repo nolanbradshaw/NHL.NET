@@ -1,4 +1,5 @@
 ﻿using NHL.NET.Constants;
+using NHL.NET.Exceptions;
 using NHL.NET.Http.Interfaces;
 using NHL.NET.Models.Franchise;
 using System.Collections.Generic;
@@ -28,12 +29,12 @@ namespace NHL.NET.Endpoints.Franchise
             // API always returns a list
             var franchiseList = await _requester.GetRequestAsync<NHLFranchiseList>($"{Urls.FranchiseUrl}/{franchiseId}");
 
-            if (franchiseList != null && franchiseList.Franchises?.Count == 1)
+            if (franchiseList != null && franchiseList.Franchises?.Count > 0)
             {
                 return franchiseList.Franchises.First();
             }
 
-            return null;
+            throw new NHLClientException($"No franchise with the id {franchiseId} exists.");
         }
 
         public async Task<NHLFranchiseList> GetMultipleByIdAsync(IEnumerable<int> franchiseIds)
@@ -59,12 +60,12 @@ namespace NHL.NET.Endpoints.Franchise
             // API always returns a list
             var franchiseList = _requester.GetRequest<NHLFranchiseList>($"{Urls.FranchiseUrl}/{franchiseId}");
 
-            if (franchiseList != null && franchiseList.Franchises?.Count == 1)
+            if (franchiseList != null && franchiseList.Franchises?.Count > 0)
             {
                 return franchiseList.Franchises.First();
             }
 
-            return null;
+            throw new NHLClientException($"No franchise with the id {franchiseId} exists.");
         }
 
         public NHLFranchiseList GetMultipleById(IEnumerable<int> franchiseIds)

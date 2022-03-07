@@ -1,6 +1,9 @@
 ﻿using NHL.NET.Constants;
+using NHL.NET.Exceptions;
 using NHL.NET.Http.Interfaces;
 using NHL.NET.Models.Player;
+using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NHL.NET.Endpoints.Players
@@ -19,7 +22,7 @@ namespace NHL.NET.Endpoints.Players
         {
             if (string.IsNullOrEmpty(season))
             {
-                return null;
+                throw new ArgumentNullException(nameof(season));
             }
 
             var response = await _requester.GetRequestAsync<NHLPlayerStatsList>($"{Urls.PlayerUrl}/{playerId}/stats?season={season}&stats={statsType}");
@@ -29,12 +32,12 @@ namespace NHL.NET.Endpoints.Players
         public async Task<NHLPlayer> GetByIdAsync(int playerId)
         {
             var response = await _requester.GetRequestAsync<NHLPlayerList>($"{Urls.PlayerUrl}/{playerId}");
-            if (response != null && response.Players.Count == 1)
+            if (response != null && response.Players?.Count > 0)
             {
-                return response.Players[0];
+                return response.Players.First();
             }
 
-            return null;
+            throw new NHLClientException($"No player with id {playerId} could be found.");
         }
 
         #endregion
@@ -44,19 +47,19 @@ namespace NHL.NET.Endpoints.Players
         public NHLPlayer GetById(int playerId)
         {
             var response = _requester.GetRequest<NHLPlayerList>($"{Urls.PlayerUrl}/{playerId}");
-            if (response != null && response.Players.Count == 1)
+            if (response != null && response.Players?.Count > 0)
             {
-                return response.Players[0];
+                return response.Players.First();
             }
 
-            return null;
+            throw new NHLClientException($"No player with id {playerId} could be found.");
         }
 
         public NHLPlayerStatsList GetStatsBySeason(int playerId, string season, string statsType = StatsTypes.SingleRegularSeason)
         {
             if (string.IsNullOrEmpty(season))
             {
-                return null;
+                throw new ArgumentNullException(nameof(season));
             }
 
             var response =  _requester.GetRequest<NHLPlayerStatsList>($"{Urls.PlayerUrl}/{playerId}/stats?season={season}&stats={statsType}");

@@ -1,6 +1,7 @@
 ﻿using NHL.NET.Endpoints.Conference;
 using NHL.NET.Endpoints.Division;
 using NHL.NET.Endpoints.Franchise;
+using NHL.NET.Endpoints.Game;
 using NHL.NET.Endpoints.Players;
 using NHL.NET.Endpoints.Standings;
 using NHL.NET.Endpoints.Team;
@@ -15,5 +16,6 @@ namespace NHL.NET
         IStandingsEndpoints Standings { get; }
         IConferenceEndpoints Conferences { get; }
         IPlayerEndpoints Players { get; }
+        IGameEndpoints Games { get; }
     }
 }

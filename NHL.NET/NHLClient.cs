@@ -1,6 +1,7 @@
 ﻿using NHL.NET.Endpoints.Conference;
 using NHL.NET.Endpoints.Division;
 using NHL.NET.Endpoints.Franchise;
+using NHL.NET.Endpoints.Game;
 using NHL.NET.Endpoints.Players;
 using NHL.NET.Endpoints.Standings;
 using NHL.NET.Endpoints.Team;
@@ -17,6 +18,7 @@ namespace NHL.NET
         public IStandingsEndpoints Standings { get; }
         public IConferenceEndpoints Conferences { get; }
         public IPlayerEndpoints Players { get; }
+        public IGameEndpoints Games { get; }
 
         public NHLClient()
         {
@@ -28,6 +30,7 @@ namespace NHL.NET
             Standings = new StandingsEndpoints(requester);
             Conferences = new ConferenceEndpoints(requester);
             Players = new PlayerEndpoints(requester);
+            Games = new GameEndpoints(requester);
         }
 
         public NHLClient(IRequester requester)
@@ -38,6 +41,7 @@ namespace NHL.NET
             Standings = new StandingsEndpoints(requester);
             Conferences = new ConferenceEndpoints(requester);
             Players = new PlayerEndpoints(requester);
+            Games = new GameEndpoints(requester);
         }
     }
 }

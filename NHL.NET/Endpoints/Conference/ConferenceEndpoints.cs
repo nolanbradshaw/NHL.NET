@@ -1,8 +1,10 @@
 ﻿using NHL.NET.Constants;
+using NHL.NET.Exceptions;
 using NHL.NET.Http.Interfaces;
 using NHL.NET.Models.Conference;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,12 +29,12 @@ namespace NHL.NET.Endpoints.Conference
         public async Task<NHLConference> GetByIdAsync(int conferenceId)
         {
             var response = await _requester.GetRequestAsync<NHLConferenceList>($"{Urls.ConferenceUrl}/{conferenceId}");
-            if (response != null && response.Conferences?.Count == 1)
+            if (response != null && response.Conferences?.Count > 0)
             {
-                return response.Conferences[0];
+                return response.Conferences.First();
             }
 
-            return null;
+            throw new NHLClientException($"No Conference with the id {conferenceId} could be found.");
         }
 
         public async Task<NHLConferenceList> GetMultipleAsync(List<int> conferenceIds)
@@ -55,12 +57,12 @@ namespace NHL.NET.Endpoints.Conference
         public NHLConference GetById(int conferenceId)
         {
             var response = _requester.GetRequest<NHLConferenceList>($"{Urls.ConferenceUrl}/{conferenceId}");
-            if (response != null && response.Conferences?.Count == 1)
+            if (response != null && response.Conferences?.Count > 0)
             {
-                return response.Conferences[0];
+                return response.Conferences.First();
             }
 
-            return null;
+            throw new NHLClientException($"No Conference with the id {conferenceId} could be found.");
         }
 
         public NHLConferenceList GetMultiple(List<int> conferenceIds)

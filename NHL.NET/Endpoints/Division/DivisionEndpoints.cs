@@ -1,8 +1,10 @@
 ﻿using NHL.NET.Constants;
+using NHL.NET.Exceptions;
 using NHL.NET.Http.Interfaces;
 using NHL.NET.Models.Division;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,12 +30,12 @@ namespace NHL.NET.Endpoints.Division
         {
             // Response is always in the form of a list
             var response = await _requester.GetRequestAsync<NHLDivisionList>($"{Urls.DivisionUrl}/{divisionId}");
-            if (response != null && response.Divisions?.Count == 1)
+            if (response != null && response.Divisions?.Count > 0)
             {
-                return response.Divisions[0];
+                return response.Divisions.First();
             }
 
-            return null;
+            throw new NHLClientException($"No division with the id {divisionId} could be found.");
         }
 
         public async Task<NHLDivisionList> GetMultipleAsync(List<int> divisionIds)
@@ -58,12 +60,12 @@ namespace NHL.NET.Endpoints.Division
         {
             // Response is always in the form of a list
             var response = _requester.GetRequest<NHLDivisionList>($"{Urls.DivisionUrl}/{divisionId}");
-            if (response != null && response.Divisions?.Count == 1)
+            if (response != null && response.Divisions?.Count > 0)
             {
-                return response.Divisions[0];
+                return response.Divisions.First();
             }
 
-            return null;
+            throw new NHLClientException($"No division with the id {divisionId} could be found.");
         }
 
         public NHLDivisionList GetMultiple(List<int> divisionIds)

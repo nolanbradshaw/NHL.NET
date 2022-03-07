@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NHL.NET.Exceptions;
+using System.Collections.Generic;
+using System.Net;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -27,6 +29,13 @@ namespace NHL.NET.Test
             Assert.Equal("Boston", response.LocationName);
             Assert.Equal("Bruins", response.TeamName);
             Assert.NotNull(response.Roster);
+        }
+
+        [Fact]
+        public async Task Test_GetByIdAsync_NoTeamFound_ThrowsNHLClientRequestException()
+        {
+            var exception = await Assert.ThrowsAsync<NHLClientRequestException>(async () => await _nhlClient.Teams.GetByIdAsync(62354));
+            Assert.Equal((int)HttpStatusCode.NotFound, exception.StatusCode);
         }
 
         [Fact]
@@ -88,6 +97,13 @@ namespace NHL.NET.Test
             Assert.Equal("Boston", response.LocationName);
             Assert.Equal("Bruins", response.TeamName);
             Assert.NotNull(response.Roster);
+        }
+
+        [Fact]
+        public void Test_GetById_NoTeamFound_ThrowsNHLClientRequestException()
+        {
+            var exception = Assert.Throws<NHLClientRequestException>(() => _nhlClient.Teams.GetById(62354));
+            Assert.Equal((int)HttpStatusCode.NotFound, exception.StatusCode);
         }
 
         [Fact]

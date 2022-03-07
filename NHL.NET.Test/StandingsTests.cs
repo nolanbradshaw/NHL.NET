@@ -22,6 +22,17 @@ namespace NHL.NET.Test
         }
 
         [Fact]
+        public async Task Test_GetCurrentAsync_DefaultStandingsType_ReturnsByRegularReason()
+        {
+            var response = await _nhlClient.Standings.GetCurrentAsync(null);
+
+            Assert.NotNull(response);
+            // Should be 4 divisions
+            Assert.True(response.Records.Count == 4);
+            Assert.True(response.Records.All(x => x.StandingsType == StandingsTypes.RegularSeason));
+        }
+
+        [Fact]
         public async Task Test_GetCurrentAsync_ByDivision_ReturnsDivisionStandings()
         {
             var response = await _nhlClient.Standings.GetCurrentAsync(StandingsTypes.ByDivision);

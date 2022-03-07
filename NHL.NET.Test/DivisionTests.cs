@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NHL.NET.Exceptions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -31,6 +32,12 @@ namespace NHL.NET.Test
         }
 
         [Fact]
+        public async Task Test_GetByIdAsync_NoDivisionExists_ThrowsNHLClientException()
+        {
+            await Assert.ThrowsAsync<NHLClientException>(async () => await _nhlClient.Divisions.GetByIdAsync(2012395));
+        }
+
+        [Fact]
         public async Task Test_GetMultipleAsync_ReturnsDivisions()
         {
             var response = await _nhlClient.Divisions.GetMultipleAsync(new List<int> { 1, 2, 3 });
@@ -60,6 +67,12 @@ namespace NHL.NET.Test
 
             Assert.True(response.Id > 0);
             Assert.False(string.IsNullOrEmpty(response.Name));
+        }
+
+        [Fact]
+        public void Test_GetById_NoDivisionExists_ThrowsNHLClientException()
+        {
+            Assert.Throws<NHLClientException>(() => _nhlClient.Divisions.GetById(2012395));
         }
 
         [Fact]

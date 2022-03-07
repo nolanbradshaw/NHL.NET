@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using NHL.NET.Exceptions;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -38,6 +39,13 @@ namespace NHL.NET.Test
             Assert.Equal("Toronto", response.LocationName);
         }
 
+
+        [Fact]
+        public async Task Test_GetByIdAsync_FranchiseNotFound_ThrowsNHLClientException()
+        {
+            await Assert.ThrowsAnyAsync<NHLClientException>(async () => await _nhlClient.Franchises.GetByIdAsync(5912357));
+        }
+
         [Fact]
         public void Test_GetById_ReturnsFranchise()
         {
@@ -46,6 +54,12 @@ namespace NHL.NET.Test
             Assert.NotNull(response);
             Assert.Equal("Maple Leafs", response.TeamName);
             Assert.Equal("Toronto", response.LocationName);
+        }
+
+        [Fact]
+        public void Test_GetById_FranchiseNotFound_ThrowsNHLClientException()
+        {
+            Assert.ThrowsAny<NHLClientException>(() => _nhlClient.Franchises.GetById(5912357));
         }
 
         [Fact]
